@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>edu.bsu.bonewars</groupId>
+		<artifactId>bonewars</artifactId>
+		<version>0.6</version>
+	</parent>
+
+	<artifactId>bonewars-html</artifactId>
+	<packaging>war</packaging>
+	<name>BoneWarsGame HTML</name>
+
+	<properties>
+		<gwt.module>edu.bsu.bonewars.BoneWarsGame</gwt.module>
+		<gwt.name>bonewars</gwt.name>
+		<!-- Desired Google App Engine SDK version -->
+		<gae.version>1.6.1</gae.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>edu.bsu.bonewars</groupId>
+			<artifactId>bonewars-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.bsu.bonewars</groupId>
+			<artifactId>bonewars-core</artifactId>
+			<version>${project.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.bsu.bonewars</groupId>
+			<artifactId>bonewars-assets</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.playn</groupId>
+			<artifactId>playn-html</artifactId>
+			<version>${playn.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.playn</groupId>
+			<artifactId>playn-html</artifactId>
+			<version>${playn.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>com.threerings</groupId>
+			<artifactId>tripleplay</artifactId>
+			<version>${playn.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>com.allen-sauer.gwt.voices</groupId>
+			<artifactId>gwt-voices</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<configuration>
+					<disableClassMetadata>false</disableClassMetadata>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+
+			<!-- allows testing of HTML backend via: mvn integration-test -Phtml -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.0.0.v20110901</version>
+				<configuration>
+					<webApp>
+						${project.basedir}/target/${project.artifactId}-${project.version}
+					</webApp>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test-html</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>run-exploded</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<wtpversion>2.0</wtpversion>
+					<additionalBuildcommands>
+						<buildCommand>
+							<name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
+						</buildCommand>
+					</additionalBuildcommands>
+					<additionalProjectnatures>
+						<projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

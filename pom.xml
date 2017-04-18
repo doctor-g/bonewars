@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.googlecode.playn</groupId>
+    <artifactId>playn-project</artifactId>
+    <version>1.8.5</version>
+  </parent>
+
+  <groupId>edu.bsu.bonewars</groupId>
+  <artifactId>bonewars</artifactId>
+  <version>0.6</version>
+  <packaging>pom</packaging>
+  <name>BoneWarsGame Metaproject</name>
+
+  <properties>
+    <playn.version>1.8</playn.version>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>java</id>
+      <activation><activeByDefault>true</activeByDefault></activation>
+      <modules><module>java</module></modules>
+    </profile>
+    <profile>
+      <id>html</id>
+      <modules><module>html</module></modules>
+    </profile>
+  </profiles>
+  <modules>
+    <module>assets</module>
+    <module>core</module>
+  </modules>
+</project>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>edu.bsu.bonewars</groupId>
+		<artifactId>bonewars</artifactId>
+		<version>0.6</version>
+	</parent>
+
+	<artifactId>bonewars-core</artifactId>
+	<packaging>jar</packaging>
+	<name>BoneWarsGame Core</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.googlecode.playn</groupId>
+			<artifactId>playn-core</artifactId>
+			<version>${playn.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.threerings</groupId>
+			<artifactId>tripleplay</artifactId>
+			<version>${playn.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.8.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-gwt</artifactId>
+			<version>16.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<!-- build a -sources.jar always, rather than only on deploy -->
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
